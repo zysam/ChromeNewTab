@@ -1,0 +1,25 @@
+{
+	"name": "每天kiyooo",
+	"description": "chrome newTab.",
+	"manifest_version": 2,
+	"version": "1.0.0",
+	"minimum_chrome_version": "40",
+	"background":{
+		"scripts" : [
+			"main.js",
+			"chromereload.js"
+		]
+	},
+	"chrome_url_overrides" : {
+		"newtab" : "index.html"
+	},
+	"icons": {
+		"16": "images/png-0462.png",
+		"64": "images/png-0462.png",
+		"128": "images/png-0462.png"
+	},
+	"permissions": [
+		"storage",
+		"<all_urls>"
+	]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ChromeNewTab",
+  "version": "0.1",
+  "homepage": "https://github.com/zysam/ChromeNewTab",
+  "authors": [
+    "zysam <g.bidens@gmail.com>"
+  ],
+  "moduleType": [
+    "es6",
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./bower_components",
+    "test",
+    "tests"
+  ]
+}

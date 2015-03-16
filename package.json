@@ -1,0 +1,22 @@
+{
+  "name": "ChromeNewTab",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.11.14"
+  },
+  "description": "chrome app init,jade stylus coffeescript angularJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "gulp dev"
+  },
+  "author": "bidens",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-coffee": "*",
+    "gulp-jade": "^0.11.0",
+    "gulp-jshint": "^1.8.5",
+    "gulp-livereload": "^2.1.1",
+    "gulp-stylus": "^2.0.1"
+  },
+  "license": "MIT"
+}

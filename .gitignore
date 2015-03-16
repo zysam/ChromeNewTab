@@ -1,0 +1,6 @@
+# Node.js
+node_modules
+test
+bower_components
+src/vendor
+app/
