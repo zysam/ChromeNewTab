@@ -1,10 +1,30 @@
-extends vendor/lipsum
+include vendor/lipsum
 extends partials/layout
 
 block title
 	title 三记 :-)
 block styles
 	link(rel="stylesheet", href="styles/main.css", type="text/css")
+block scripts
+	script(src='/scripts/angular.min.js')
+	script(src='/scripts/app.js')
 
 block content
-	h3 Hello,world!
+	.container(ng-controller='main')
+		.row
+			.col-md-12.col-sm-12
+				.page-header
+					h3.text-center
+						+lipsum('2','sentences')
+					h4.text-right
+						small: +lipsum('2','sentences')
+		.row
+			.card-main
+				.card(ng-repeat = 'card in cards' ng-if = '$index < 12').text-center
+					p {{card.en}}
+					p {{card.zh}}
+					p 
+						span {{card.word}}
+						span {{card.pron}}
+					p {{card.trans}}
+

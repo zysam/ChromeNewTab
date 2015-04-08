@@ -1,4 +1,10 @@
 'use strict'
 
-chrome.runtime.onInstalled.addListener (details)->
-	console.log 'previousVersion',details.previousVersion
+chrome.app.runtime.onLaunched.addListener ->
+	chrome.app.window.create 'index.html',{
+		id : '三记'
+		bounds : 
+			height : 400
+			width : 550
+		#frame : 'none'
+	}

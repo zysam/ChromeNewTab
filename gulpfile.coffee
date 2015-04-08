@@ -16,7 +16,7 @@ paths =
 	chromereload: 'src/chromereload.js'
 	dest : 
 		app    : './app'
-	live : ['./app/**']
+	live : './app/**'
 
 handleError = (err) ->
 	#console.error.bind(console)
@@ -56,6 +56,7 @@ gulp.task 'images:dev', ->
 		.on 'error',handleError
 		.pipe gulp.dest paths.dest.app
 
+
 gulp.task 'watch', ->
 	gulp.watch paths.views       , ['views:dev']
 	gulp.watch paths.styles      , ['styles:dev']
@@ -66,7 +67,8 @@ gulp.task 'watch', ->
 gulp.task 'livereload', ->
 		s = livereload()
 		gulp.watch paths.live, (evt)->
-			s.changed evt.paths,LIVERELOAD_PORT
+			console.log evt.path+' changed!'
+			s.changed evt.path,LIVERELOAD_PORT
 		.on 'error',handleError
 
 gulp.task 'default', ['watch','livereload']

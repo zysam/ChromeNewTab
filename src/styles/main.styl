@@ -16,6 +16,7 @@ $list-group-border ?= palette('Grey','100')
 //utilities
 @import '../vendor/bootstrap-styl/bootstrap/utilities'
 @import '../vendor/bootstrap-styl/bootstrap/type'
+@import '../vendor/bootstrap-styl/bootstrap/thumbnails'
 //@import 'bootstrap-styl/bootstrap/list-group'
 //global-reset()
 //reset-font()
@@ -28,6 +29,27 @@ make-grid-columns()
 ny-border()
 	border palette('Grey','100')
 body
-	background: palette('Grey','200')
+	background: palette('Grey','50')
 	//padding 50px 50px 0px 50px
 	overflow hidden
+
+.card-main
+	display block
+	margin-left auto
+	margin-right auto
+	width 80%
+	> .card
+		display inline-block
+		margin 0 10px 10px 0
+		background: palette('Grey','300')
+		my-border()
+		vertical-align top
+		width 22%
+
+/*
+.card-main
+	column-count 4
+	column-fill auto
+	> .card
+		background palette('Grey','200')
+*/
