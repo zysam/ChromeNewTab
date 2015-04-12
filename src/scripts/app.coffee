@@ -8,6 +8,9 @@ CARDS_URL = 'http://study.youdao.com/card.a?method=allCardsJson&index=0
 IMG_URL = 'http://oimagec1.ydstatic.com/image?product=dict-treasury&id='
 ORICARD_KEY = 'oriCard'
 MYCARD_KEY = 'uCard'
+
+isApplyRun = false
+
 #services
 app.factory 'fetch',['$http',($http)->
 	getCard : (url)->
@@ -32,14 +35,17 @@ app.controller 'main',['$scope','fetch',($scope,fetch) ->
 					console.log 'no data in chrome '
 					fetch.getCard(CARDS_URL).success (data)->
 						console.log 'getCardJson suc :' + data[1].word
+						isApplyRun = true
 						storage = {}
+						callback data
 						storage[ORICARD_KEY] = data
 
 						chrome.storage.local.set storage,->
 							console.log "storage oriCard"
-						
-						oriCard = data
-						callback(oriCard)
+							isApplyRun = false #可能這個早早完成了，$apply也完成
+							#第二次set時可能有bug?
+							#oriCard = data
+							#callback(oriCard)
 				else
 					console.info '1)oriCard:' + items[key][1].word
 					oriCard = items[key]
@@ -69,10 +75,11 @@ app.controller 'main',['$scope','fetch',($scope,fetch) ->
 			console.info 'n)%s\card.word:%s',n,card.word
 
 		#cards.card = card
+		callback cards
 		chrome.storage.local.set cards,->
 			console.log 'storage mycard!'
 			#return
-		callback cards
+		#callback cards
 
 	#get card from chrome storage key = 'mycard'
 	initCard = (key,callback) ->
@@ -96,8 +103,13 @@ app.controller 'main',['$scope','fetch',($scope,fetch) ->
 	#if cards.mycard
 		console.log cards[MYCARD_KEY][0]
 		$scope.cards = []
-		$scope.$apply ->
+		console.log '$apply:' + isApplyRun
+		if !isApplyRun
+			$scope.$apply ->
+				$scope.cards = cards[MYCARD_KEY]
+		else
 			$scope.cards = cards[MYCARD_KEY]
+		
 		###
 		for card in $scope.cards
 			for k,v of card
